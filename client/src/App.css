@@ -1,5 +1,6 @@
 .App {
   display: flex;
+  background-color: black;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -21,10 +22,13 @@
   width: 300px;
   height: 40px;
   border: azure;
-  border-radius: 7px;
   margin: 8px;
   padding-left: 15px;
   font-size: 16px;
+}
+
+.AddPassword button{
+  background-color: lightgray;
 }
 
 button{
