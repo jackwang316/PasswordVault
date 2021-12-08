@@ -4,3 +4,29 @@
   justify-content: center;
   align-items: center;
 }
+
+.AddPassword{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: cadetblue;
+  width: 40%;
+  height: 260px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.AddPassword button, input{
+  width: 300px;
+  height: 40px;
+  border: azure;
+  border-radius: 7px;
+  margin: 8px;
+  padding-left: 15px;
+  font-size: 16px;
+}
+
+button{
+  cursor: pointer;
+}
