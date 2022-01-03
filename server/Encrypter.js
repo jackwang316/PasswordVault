@@ -12,7 +12,7 @@ const encrypt = (unencryptedVal) => {
         cipher.final(),
     ]);
     return {
-        iv: iv,
+        iv: iv.toString("hex"),
         encryptedVal: encryptedVal.toString("hex"),
     };
 };
@@ -24,7 +24,7 @@ const decrypt = (encryptedVal) => {
         Buffer.from(encryptedVal.iv, "hex")
     )
     const decryptedVal = Buffer.concat([
-        decipher.update(encryptedVal),
+        decipher.update(Buffer.from(encryptedVal.password, "hex")),
         decipher.final(),
     ])
 
