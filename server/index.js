@@ -5,6 +5,7 @@ const express = require('express')
 const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
+const {encrypt} = require("./Encrypter");
 
 app.use(cors())
 app.use(express.json())
@@ -18,15 +19,19 @@ const db = mysql.createConnection({
 
 app.post('/addpassword', (req, res) => {
     const {username, password, website} = req.body
-    db.query("INSERT INTO passwords (username, password, website) VALUES (?,?,?)", [
-        username,
-        password,
+    const encryptedUser = encrypt(username)
+    const encryptedPassword = encrypt(password)
+    db.query("INSERT INTO passwords (username, password, website, user_iv, password_iv) VALUES (?,?,?,?,?)", [
+        encryptedUser.encryptedVal,
+        encryptedPassword.encryptedVal,
         website,
+        encryptedUser.iv,
+        encryptedPassword.iv
     ], (result, err) => {
         if(err) {
             console.error(err);
         }else{
-            res.send("Account credentials added to database");
+            res.status(201).json({message: "Account credentials added to database"});
         }
     });
 });
